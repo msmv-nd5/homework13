@@ -1,0 +1,43 @@
+<style>
+    .ng-dirty.ng-invalid {
+        border-color: #FA787E;
+    }
+
+    .ng-dirty.ng-valid {
+        border-color: #78FA89;
+    }
+
+</style>
+
+<form name="vm.pokemonForm" novalidate>
+    <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control" data-ng-model="vm.newPokemon.name" type="text" placeholder="Имя" required ng-minlength="3" name="pokemonName">
+    </div>
+
+    <div ng-messages="vm.pokemonForm.pokemonName.$error" ng-if="vm.pokemonForm.pokemonName.$dirty">
+        <div ng-message="required" class="alert alert-danger" role="alert">А где имя?</div>
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" data-ng-model="vm.newPokemon.email" type="text" placeholder="Email" data-ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="pokemonEmail">
+    </div>
+
+    <div role="alert" ng-messages="vm.pokemonForm.pokemonEmail.$error" ng-if="vm.pokemonForm.pokemonEmail.$dirty">
+        <div ng-message="pattern" class="alert alert-danger">Это значение не похоже на email</div>
+    </div>
+
+
+    <div class="form-group">
+        <label>Телефон</label>
+        <input class="form-control" data-ng-model="vm.newPokemon.phone" type="text" placeholder="Телефон" data-ng-pattern="/^^((\+7|7|8)+([0-9]){10})$/" name="pokemonPhone">
+    </div>
+
+    <div role="alert" ng-messages="vm.pokemonForm.pokemonPhone.$error" ng-if="vm.pokemonForm.pokemonPhone.$dirty">
+        <div ng-message="pattern" class="alert alert-danger">Это значение не похоже на телефон</div>
+    </div>
+
+
+
+</form>
